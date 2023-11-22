@@ -92,18 +92,18 @@ class _Lampu2PageState extends State<Lampu2Page> {
                     height: 445.0,
                   ),
                 ),
-                SizedBox(width: 16.0),
+                SizedBox(width: 32.0),
                 Container(
                   margin: EdgeInsets.only(right: 20),
                   child: Column(
                     children: [
-                      SizedBox(height: 8.0),
+                      SizedBox(height: 2.0),
                       SliderTheme(
                         data: SliderThemeData(
                           trackHeight: 70,
                           thumbShape: SliderComponentShape.noOverlay,
                           valueIndicatorShape: SliderComponentShape.noOverlay,
-                          trackShape: RectangularSliderTrackShape(),
+                          trackShape: RoundedRectSliderTrackShape(),
                           activeTrackColor: Color(0xFF222538),
                           inactiveTrackColor:
                               Color.fromARGB(255, 237, 239, 242),
@@ -111,10 +111,10 @@ class _Lampu2PageState extends State<Lampu2Page> {
                           inactiveTickMarkColor: Colors.transparent,
                         ),
                         child: Container(
-                          height: 360,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25.0),
-                              color: Color.fromARGB(255, 237, 239, 242)),
+                          height: 330,
+                          // decoration: BoxDecoration(
+                          //     borderRadius: BorderRadius.circular(25.0),
+                          //     color: Color.fromARGB(255, 237, 239, 242)),
                           child: Column(
                             children: [
                               const SizedBox(height: 8),
@@ -127,7 +127,7 @@ class _Lampu2PageState extends State<Lampu2Page> {
                                         value: _verticalSliderValue,
                                         min: 0,
                                         max: 100,
-                                        divisions: 20,
+                                        divisions: 50,
                                         label: _verticalSliderValue
                                             .round()
                                             .toString(),

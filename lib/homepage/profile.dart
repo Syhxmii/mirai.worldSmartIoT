@@ -78,6 +78,7 @@ class _ProfilePageState extends State<ProfilePage> {
           Expanded(
             child: ListView(
               children: [
+                // Container pertama
                 Container(
                   padding:
                       EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),
@@ -87,75 +88,84 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   width: MediaQuery.of(context).size.width,
                   margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10.0),
-                  child: Column(
+                  child: Row(
                     children: [
                       Container(
-                        width: 200,
-                        height: 300,
+                        width: 100,
+                        height: 120,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
+                          borderRadius: BorderRadius.circular(10.0),
                           image: DecorationImage(
                             image: AssetImage('assets/syahmi.jpg'),
                             fit: BoxFit.cover,
                           ),
                         ),
                       ),
-                      Text(
-                        'Syahmi Naufal Saputra',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14.0,
-                          color: Color.fromARGB(0xFF, 0x22, 0x25, 0x38),
-                        ),
-                      ),
-                      Text(
-                        'E32222388',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w400,
-                          height: 1.2,
-                          fontSize: 12.0,
-                          color: Color.fromARGB(0xFF, 0x22, 0x25, 0x38),
-                        ),
-                      ),
-                      Text(
-                        'Frontend',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w400,
-                          height: 1.2,
-                          fontSize: 12.0,
-                          color: Color.fromARGB(0xFF, 0x22, 0x25, 0x38),
-                        ),
+                      SizedBox(width: 10.0),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Syahmi Naufal Saputra',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14.0,
+                              color: Color.fromARGB(0xFF, 0x22, 0x25, 0x38),
+                            ),
+                          ),
+                          Text(
+                            'E32222388',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w400,
+                              height: 1.2,
+                              fontSize: 12.0,
+                              color: Color.fromARGB(0xFF, 0x22, 0x25, 0x38),
+                            ),
+                          ),
+                          Text(
+                            'Frontend',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w400,
+                              height: 1.2,
+                              fontSize: 12.0,
+                              color: Color.fromARGB(0xFF, 0x22, 0x25, 0x38),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
+
+                // Container kedua
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),
                   decoration: BoxDecoration(
                     color: Color.fromARGB(255, 237, 239, 242),
                     borderRadius: BorderRadius.circular(15.0),
                   ),
-                  height: 85,
+                  width: MediaQuery.of(context).size.width,
                   margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10.0),
                   child: Row(
                     children: [
                       Container(
-                        width: 50,
-                        height: 50,
+                        width: 100,
+                        height: 120,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
+                          borderRadius: BorderRadius.circular(10.0),
                           image: DecorationImage(
-                            image: AssetImage('assets/air.png'),
+                            image: AssetImage('assets/iqbal.jpg'),
                             fit: BoxFit.cover,
                           ),
                         ),
                       ),
+                      SizedBox(width: 10.0),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             'Muhammad Iqbal',
@@ -191,30 +201,33 @@ class _ProfilePageState extends State<ProfilePage> {
                     ],
                   ),
                 ),
+
+                // Container ketiga
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),
                   decoration: BoxDecoration(
                     color: Color.fromARGB(255, 237, 239, 242),
                     borderRadius: BorderRadius.circular(15.0),
                   ),
-                  height: 85,
+                  width: MediaQuery.of(context).size.width,
                   margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10.0),
                   child: Row(
                     children: [
                       Container(
-                        width: 50,
-                        height: 50,
+                        width: 100,
+                        height: 120,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
+                          borderRadius: BorderRadius.circular(10.0),
                           image: DecorationImage(
-                            image: AssetImage('assets/air.png'),
+                            image: AssetImage('assets/aliya.jpg'),
                             fit: BoxFit.cover,
                           ),
                         ),
                       ),
+                      SizedBox(width: 10.0),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             'Aliya Nabilla Putri',
@@ -236,7 +249,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Text(
-                            'Cheerleaders',
+                            'Engineering',
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.w400,
@@ -247,40 +260,6 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 237, 239, 242),
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  height: 85,
-                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10.0),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          image: DecorationImage(
-                            image: AssetImage('assets/air.png'),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        'Logout',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                          height: 1.2,
-                          fontSize: 20.0,
-                          color: Color.fromARGB(0xFF, 0x22, 0x25, 0x38),
-                        ),
-                      )
                     ],
                   ),
                 ),

@@ -27,73 +27,73 @@ class HomePage extends StatelessWidget {
     "259lx",
   ];
 
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
-    body: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          margin: EdgeInsets.only(left: 9, right: 9, top: 30),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Selamat Datang',
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w700,
-                            fontSize: 24.0,
-                            color: Color.fromARGB(0xFF, 0x22, 0x25, 0x38),
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            margin: EdgeInsets.only(left: 9, right: 9, top: 30),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Selamat Datang',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w700,
+                              fontSize: 24.0,
+                              color: Color.fromARGB(0xFF, 0x22, 0x25, 0x38),
+                            ),
                           ),
-                        ),
-                        Text(
-                          'mirai.world Smart IoT',
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            height: 0.8,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 16.0,
-                            color: Color.fromARGB(0xFF, 0x22, 0x25, 0x38),
+                          Text(
+                            'mirai.world Smart IoT',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              height: 0.8,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16.0,
+                              color: Color.fromARGB(0xFF, 0x22, 0x25, 0x38),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    print('Profil diklik');
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ProfilePage()),
-                    );
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(8.0),
-                    width: 46.0,
-                    height: 46.0,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 237, 239, 242),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: Image.asset(
-                      'assets/user.png',
+                  GestureDetector(
+                    onTap: () {
+                      print('Profil diklik');
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ProfilePage()),
+                      );
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(8.0),
+                      width: 46.0,
+                      height: 46.0,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 237, 239, 242),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Image.asset(
+                        'assets/user.png',
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 8.0),
             decoration: BoxDecoration(
