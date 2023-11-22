@@ -93,12 +93,12 @@ class _Lampu2PageState extends State<Lampu2Page> {
                     height: 445.0,
                   ),
                 ),
-                SizedBox(width: 16.0),
+                SizedBox(width: 32.0),
                 Container(
                   margin: EdgeInsets.only(right: 20),
                   child: Column(
                     children: [
-                      SizedBox(height: 8.0),
+                      SizedBox(height: 2.0),
                       SliderTheme(
                         data: SliderThemeData(
                           trackHeight: 5, // Ubah tinggi track sesuai kebutuhan
@@ -114,8 +114,8 @@ class _Lampu2PageState extends State<Lampu2Page> {
                               Color.fromARGB(255, 237, 239, 242),
                         ),
                         child: Container(
-                          height: 360,
-                          decoration: BoxDecoration(
+                          height: 330,
+                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(25.0),
                               color: Color.fromARGB(255, 237, 239, 242)),
                           child: Column(
@@ -130,7 +130,7 @@ class _Lampu2PageState extends State<Lampu2Page> {
                                         value: _verticalSliderValue,
                                         min: 0,
                                         max: 100,
-                                        divisions: 20,
+                                        divisions: 50,
                                         label: _verticalSliderValue
                                             .round()
                                             .toString(),

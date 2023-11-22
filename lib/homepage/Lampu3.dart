@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+
 import 'homepage.dart';
 import 'blynk_api.dart';
 class Lampu3Page extends StatefulWidget {
@@ -53,8 +54,7 @@ class _Lampu3PageState extends State<Lampu3Page> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        HomePage()), 
+                                    builder: (context) => HomePage()),
                               );
                             },
                             child: Image.asset(
@@ -93,7 +93,7 @@ class _Lampu3PageState extends State<Lampu3Page> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               buildOnTextContainer(),
-              buildSwitchContainer(),
+              buildOnText2Container(),
             ],
           ),
         ],
@@ -137,7 +137,7 @@ class _Lampu3PageState extends State<Lampu3Page> {
     );
   }
 
-  Widget buildSwitchContainer() {
+  Widget buildOnText2Container() {
     return Container(
       width: 160.0,
       height: 120.0,
@@ -162,11 +162,11 @@ class _Lampu3PageState extends State<Lampu3Page> {
           ),
           SizedBox(height: 3.0),
           Text(
-            'Turn On/Off',
+            'Intensitas Cahaya',
             style: TextStyle(
               fontFamily: 'Poppins',
               fontWeight: FontWeight.w400,
-              height: 1.6,
+              height: 0.2,
               fontSize: 12.0,
               color: Color.fromARGB(255, 169, 169, 184),
             ),
