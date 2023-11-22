@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'homepage.dart';
 
-class ProfilePage extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   @override
-  _ProfilePageState createState() => _ProfilePageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _LoginPageState extends State<LoginPage> {
   bool switchValue = false;
+  bool _isPasswordHidden = true;
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +53,66 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                 ],
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: TextFormField(
+              decoration: InputDecoration(
+                labelText: 'Username',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: TextFormField(
+              obscureText: _isPasswordHidden,
+              decoration: InputDecoration(
+                labelText: 'Password',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _isPasswordHidden ? Icons.visibility : Icons.visibility_off,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _isPasswordHidden = !_isPasswordHidden;
+                    });
+                  },
+                ),
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              height: 50,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Center(
+                child: Text(
+                  'Login',
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w700,
+                    fontSize: 16.0,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ),
           ),
