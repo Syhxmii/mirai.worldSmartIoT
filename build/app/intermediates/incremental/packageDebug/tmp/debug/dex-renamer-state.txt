@@ -1,4 +1,4 @@
-#Wed Nov 22 09:03:52 WIB 2023
+#Wed Nov 22 10:41:11 WIB 2023
 base.0=D\:\\Tugas\\Polije\\Semester 3\\Workshop Aplikasi Mobile\\SmartHomeIOT\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
