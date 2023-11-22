@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'blynk_api.dart';
 import 'homepage.dart';
 
 class CahayaPage extends StatefulWidget {
@@ -7,7 +8,7 @@ class CahayaPage extends StatefulWidget {
 }
 
 class _CahayaPageState extends State<CahayaPage> {
-  bool switchValue = false;
+  int lightIntensity = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +53,8 @@ class _CahayaPageState extends State<CahayaPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        HomePage()), 
+                                  builder: (context) => HomePage(),
+                                ),
                               );
                             },
                             child: Image.asset(
@@ -111,14 +112,23 @@ class _CahayaPageState extends State<CahayaPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            '259lx',
-            style: TextStyle(
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w800,
-              fontSize: 40.0,
-              color: Color.fromARGB(255, 34, 37, 56),
-            ),
+          StreamBuilder<int?>(
+            stream: BlynkApi.getLdrStream(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData && snapshot.data != null) {
+                lightIntensity = snapshot.data!;
+                print('Received light intensity data: $lightIntensity');
+              }
+              return Text(
+                '${lightIntensity}lx',
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w800,
+                  fontSize: 40.0,
+                  color: Color.fromARGB(255, 34, 37, 56),
+                ),
+              );
+            },
           ),
           SizedBox(height: 3.0),
           Text(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'homepage.dart';
-
+import 'blynk_api.dart';
 class Lampu3Page extends StatefulWidget {
   @override
   _Lampu3PageState createState() => _Lampu3PageState();
@@ -157,6 +157,7 @@ class _Lampu3PageState extends State<Lampu3Page> {
               setState(() {
                 switchValue = value;
               });
+              BlynkApi.toggleLed(value, 6); // Ganti 2 dengan virtual pin yang sesuai
             },
           ),
           SizedBox(height: 3.0),

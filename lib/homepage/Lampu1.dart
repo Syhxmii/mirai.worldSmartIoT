@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'homepage.dart';
+import 'blynk_api.dart';
 
 class Lampu1Page extends StatefulWidget {
   @override
@@ -53,8 +54,8 @@ class _Lampu1PageState extends State<Lampu1Page> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        HomePage()), 
+                                  builder: (context) => HomePage(),
+                                ),
                               );
                             },
                             child: Image.asset(
@@ -157,6 +158,7 @@ class _Lampu1PageState extends State<Lampu1Page> {
               setState(() {
                 switchValue = value;
               });
+              BlynkApi.toggleLed(value, 1);
             },
           ),
           SizedBox(height: 3.0),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'homepage.dart';
+import 'blynk_api.dart';
 
 class Lampu2Page extends StatefulWidget {
   @override
@@ -100,15 +101,17 @@ class _Lampu2PageState extends State<Lampu2Page> {
                       SizedBox(height: 8.0),
                       SliderTheme(
                         data: SliderThemeData(
-                          trackHeight: 70,
-                          thumbShape: SliderComponentShape.noOverlay,
-                          valueIndicatorShape: SliderComponentShape.noOverlay,
-                          trackShape: RectangularSliderTrackShape(),
+                          trackHeight: 5, // Ubah tinggi track sesuai kebutuhan
+                          thumbShape: CustomSliderThumbCircle(
+                            thumbRadius: 12.0,
+                            min: 0,
+                            max: 100,
+                          ),
+                          overlayColor: Colors.transparent,
+                          thumbColor: Color(0xFF222538),
                           activeTrackColor: Color(0xFF222538),
                           inactiveTrackColor:
                               Color.fromARGB(255, 237, 239, 242),
-                          activeTickMarkColor: Colors.transparent,
-                          inactiveTickMarkColor: Colors.transparent,
                         ),
                         child: Container(
                           height: 360,
@@ -135,19 +138,13 @@ class _Lampu2PageState extends State<Lampu2Page> {
                                           setState(() {
                                             _verticalSliderValue = value;
                                           });
+
+                                          // Mengirim nilai kecerahan ke Blynk saat slider berubah
+                                          BlynkApi.setBrightness(value);
                                         },
                                       ),
                                     ),
-                                    Center(
-                                      child: Text(
-                                        '${_verticalSliderValue.round()}',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20,
-                                        ),
-                                      ),
-                                    ),
+                                    
                                   ],
                                 ),
                               ),
@@ -230,6 +227,7 @@ class _Lampu2PageState extends State<Lampu2Page> {
               setState(() {
                 switchValue = value;
               });
+              BlynkApi.toggleLed(value, 5); // Ganti 2 dengan virtual pin yang sesuai
             },
           ),
           SizedBox(height: 3.0),
@@ -246,5 +244,72 @@ class _Lampu2PageState extends State<Lampu2Page> {
         ],
       ),
     );
+  }
+}
+
+// CustomSliderThumbCircle class
+class CustomSliderThumbCircle extends SliderComponentShape {
+  final double thumbRadius;
+  final thumbHeight;
+  final int min;
+  final int max;
+
+  CustomSliderThumbCircle({
+    required this.thumbRadius,
+    this.thumbHeight,
+    required this.min,
+    required this.max,
+  });
+
+  @override
+  Size getPreferredSize(bool isEnabled, bool isDiscrete) {
+    return Size(thumbRadius, thumbHeight ?? thumbRadius * 2);
+  }
+
+  @override
+  void paint(
+    PaintingContext context,
+    Offset center, {
+    Animation<double>? activationAnimation,
+    Animation<double>? enableAnimation,
+    bool isDiscrete = false,
+    TextPainter? labelPainter,
+    RenderBox? parentBox,
+    SliderThemeData? sliderTheme,
+    TextDirection? textDirection,
+    double value = 0.0,
+    double textScaleFactor = 1.0,
+    Size? sizeWithOverflow,
+  }) {
+    final Canvas canvas = context.canvas;
+
+    final paint = Paint()
+      ..color = Color(0xFF222538)
+      ..style = PaintingStyle.fill;
+
+    TextSpan span = new TextSpan(
+      style: new TextStyle(
+        fontSize: thumbRadius * 0.8,
+        fontWeight: FontWeight.w700,
+        color: Colors.white,
+      ),
+      text: '${getValue(value)}',
+    );
+
+    TextPainter tp = new TextPainter(
+      text: span,
+      textAlign: TextAlign.center,
+      textDirection: TextDirection.ltr,
+    );
+
+    tp.layout();
+    Offset textCenter = Offset(center.dx - (tp.width / 2), center.dy - (tp.height / 2));
+
+    canvas.drawCircle(center, thumbRadius, paint);
+    tp.paint(canvas, textCenter);
+  }
+
+  String getValue(double value) {
+    return ((max - min) * value).round().toString();
   }
 }
