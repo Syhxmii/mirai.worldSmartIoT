@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'homepage.dart';
+import 'signup.dart';
 import 'login.dart';
 
 class FirstPage extends StatefulWidget {
@@ -82,7 +82,7 @@ class _FirstPageState extends State<FirstPage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
+                  MaterialPageRoute(builder: (context) => SignupPage()),
                 );
               },
               child: Container(
