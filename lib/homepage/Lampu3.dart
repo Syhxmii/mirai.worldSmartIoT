@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'homepage.dart';
-
+import 'blynk_api.dart';
 class Lampu3Page extends StatefulWidget {
   @override
   _Lampu3PageState createState() => _Lampu3PageState();
 }
 
 class _Lampu3PageState extends State<Lampu3Page> {
-  bool switchValue = false;
+  int lightIntensity = 0;
+    bool switchValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -111,11 +113,11 @@ class _Lampu3PageState extends State<Lampu3Page> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            switchValue ? 'ON' : 'OFF',
+            switchValue ? 'MALAM' : 'SIANG',
             style: TextStyle(
               fontFamily: 'Poppins',
               fontWeight: FontWeight.w800,
-              fontSize: 40.0,
+              fontSize: 32.0,
               color: Color.fromARGB(255, 34, 37, 56),
             ),
           ),
@@ -146,14 +148,23 @@ class _Lampu3PageState extends State<Lampu3Page> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            '259lx',
-            style: TextStyle(
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w800,
-              fontSize: 40.0,
-              color: Color.fromARGB(255, 34, 37, 56),
-            ),
+          StreamBuilder<int?>(
+            stream: BlynkApi.getLdrStream(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData && snapshot.data != null) {
+                lightIntensity = snapshot.data!;
+                print('Received light intensity data: $lightIntensity');
+              }
+              return Text(
+                '${lightIntensity}lx',
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w800,
+                  fontSize: 40.0,
+                  color: Color.fromARGB(255, 34, 37, 56),
+                ),
+              );
+            },
           ),
           SizedBox(height: 3.0),
           Text(

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'blynk_api.dart';
 import 'homepage.dart';
-
 class SuhuPage extends StatefulWidget {
   @override
   _SuhuPageState createState() => _SuhuPageState();
 }
 
 class _SuhuPageState extends State<SuhuPage> {
-  bool switchValue = false;
+  int temperature = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +52,7 @@ class _SuhuPageState extends State<SuhuPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        HomePage()), 
+                                    builder: (context) => HomePage()),
                               );
                             },
                             child: Image.asset(
@@ -111,14 +110,23 @@ class _SuhuPageState extends State<SuhuPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            '34°C',
-            style: TextStyle(
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w800,
-              fontSize: 40.0,
-              color: Color.fromARGB(255, 34, 37, 56),
-            ),
+          StreamBuilder<int?>(
+            stream: BlynkApi.getTemperatureStream(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData && snapshot.data != null) {
+                temperature = snapshot.data!;
+                print('Received temperature data: $temperature');
+              }
+              return Text(
+                '${temperature}°C',
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w800,
+                  fontSize: 40.0,
+                  color: Color.fromARGB(255, 34, 37, 56),
+                ),
+              );
+            },
           ),
           SizedBox(height: 3.0),
           Text(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'blynk_api.dart';
 import 'homepage.dart';
 
 class KelembabanPage extends StatefulWidget {
@@ -7,7 +8,7 @@ class KelembabanPage extends StatefulWidget {
 }
 
 class _KelembabanPageState extends State<KelembabanPage> {
-  bool switchValue = false;
+  int humidity = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +53,7 @@ class _KelembabanPageState extends State<KelembabanPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        HomePage()), 
+                                    builder: (context) => HomePage()),
                               );
                             },
                             child: Image.asset(
@@ -111,14 +111,23 @@ class _KelembabanPageState extends State<KelembabanPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            '80%',
-            style: TextStyle(
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w800,
-              fontSize: 40.0,
-              color: Color.fromARGB(255, 34, 37, 56),
-            ),
+          StreamBuilder<int?>(
+            stream: BlynkApi.getHumidityStream(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData && snapshot.data != null) {
+                humidity = snapshot.data!;
+                print('Received humidity data: $humidity');
+              }
+              return Text(
+                '${humidity}%',
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w800,
+                  fontSize: 40.0,
+                  color: Color.fromARGB(255, 34, 37, 56),
+                ),
+              );
+            },
           ),
           SizedBox(height: 3.0),
           Text(

@@ -7,12 +7,13 @@ import 'Suhu.dart';
 import 'Kelembaban.dart';
 import 'Cahaya.dart';
 import 'profile.dart';
+import 'blynk_api.dart';
 
 class HomePage extends StatelessWidget {
   final List<String> containerNames = [
     'Lampu 1',
     'Lampu 2',
-    'Lampu3',
+    'Lampu 3',
     'Kelembaban',
     'Suhu',
     'Cahaya',
@@ -22,9 +23,9 @@ class HomePage extends StatelessWidget {
     "Pin 12",
     "Pin 13",
     "Pin 26",
-    "80%",
-    "34°C",
-    "259lx",
+    "Pin 14",
+    "Pin 14",
+    "Pin 32",
   ];
 
   @override
@@ -112,14 +113,23 @@ class HomePage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          '80%',
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w600,
-                            fontSize: 40.0,
-                            color: const Color.fromARGB(255, 34, 37, 56),
-                          ),
+                        StreamBuilder<int?>(
+                          stream: BlynkApi.getHumidityStream(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return Text(
+                                '${snapshot.data!}%',
+                                style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 40.0,
+                                  color: const Color.fromARGB(255, 34, 37, 56),
+                                ),
+                              );
+                            } else {
+                              return Text('Loading...');
+                            }
+                          },
                         ),
                         Text(
                           'Kelembaban',
@@ -140,20 +150,29 @@ class HomePage extends StatelessWidget {
                   width: 62.0,
                   height: 62.0,
                 ),
-                Expanded(
+                 Expanded(
                   child: Container(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          '34°C',
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w600,
-                            fontSize: 40.0,
-                            color: const Color.fromARGB(255, 34, 37, 56),
-                          ),
+                        StreamBuilder<int?>(
+                          stream: BlynkApi.getTemperatureStream(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return Text(
+                                '${snapshot.data!}°C',
+                                style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 40.0,
+                                  color: const Color.fromARGB(255, 34, 37, 56),
+                                ),
+                              );
+                            } else {
+                              return Text('Loading...');
+                            }
+                          },
                         ),
                         Text(
                           'Suhu',
@@ -240,6 +259,7 @@ class _ContainerGridState extends State<ContainerGrid> {
                             });
                             int ledVirtualPin =
                                 index == 0 ? 1 : (index == 1 ? 5 : 6);
+                                BlynkApi.toggleLed(value, ledVirtualPin);
                           },
                         ),
                       ],

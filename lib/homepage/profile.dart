@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smarthome/homepage/first.dart';
 import 'homepage.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -49,7 +50,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                         ],
                       ),
-                    ), 
+                    ),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -261,6 +262,35 @@ class _ProfilePageState extends State<ProfilePage> {
                         ],
                       ),
                     ],
+                  ),
+                ),
+                SizedBox(height: 10.0),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => FirstPage()),
+                    );
+                  },
+                  child: Container(
+                    margin:
+                        EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+                    height: 45.0,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(0xFF, 0x22, 0x25, 0x3),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Logout',
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14.0,
+                          color: Color.fromARGB(255, 255, 255, 255),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ],
