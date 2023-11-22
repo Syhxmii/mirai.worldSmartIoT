@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'homepage.dart';
 import 'blynk_api.dart';
+
 class Lampu3Page extends StatefulWidget {
   @override
   _Lampu3PageState createState() => _Lampu3PageState();
@@ -9,7 +9,7 @@ class Lampu3Page extends StatefulWidget {
 
 class _Lampu3PageState extends State<Lampu3Page> {
   int lightIntensity = 0;
-    bool switchValue = false;
+  bool switchValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,8 @@ class _Lampu3PageState extends State<Lampu3Page> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => HomePage()),
+                                  builder: (context) => HomePage(),
+                                ),
                               );
                             },
                             child: Image.asset(
@@ -109,30 +110,43 @@ class _Lampu3PageState extends State<Lampu3Page> {
         color: Color.fromARGB(255, 237, 239, 242),
         borderRadius: BorderRadius.circular(15.0),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            switchValue ? 'MALAM' : 'SIANG',
-            style: TextStyle(
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w800,
-              fontSize: 32.0,
-              color: Color.fromARGB(255, 34, 37, 56),
-            ),
-          ),
-          SizedBox(height: 3.0),
-          Text(
-            'Indikator',
-            style: TextStyle(
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w400,
-              height: 0.2,
-              fontSize: 12.0,
-              color: Color.fromARGB(255, 169, 169, 184),
-            ),
-          ),
-        ],
+      child: StreamBuilder<int?>(
+        stream: BlynkApi.getLdrStream(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData && snapshot.data != null) {
+            lightIntensity = snapshot.data!;
+            print('Received light intensity data: $lightIntensity');
+
+            // Mengubah nilai switchValue berdasarkan nilai LDR
+            switchValue = lightIntensity < 100;
+          }
+
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                switchValue ? 'MALAM' : 'SIANG',
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w800,
+                  fontSize: 32.0,
+                  color: Color.fromARGB(255, 34, 37, 56),
+                ),
+              ),
+              SizedBox(height: 3.0),
+              Text(
+                'Indikator',
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w400,
+                  height: 0.2,
+                  fontSize: 12.0,
+                  color: Color.fromARGB(255, 169, 169, 184),
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
